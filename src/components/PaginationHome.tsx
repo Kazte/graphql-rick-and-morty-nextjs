@@ -1,10 +1,8 @@
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationNext,
-  PaginationPrevious
-} from '~/components/ui/pagination';
+'use client';
+
+import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from './ui/pagination';
+import { cn } from '@/lib/utils';
+import { router } from 'next/client';
 
 
 interface Props {
@@ -14,21 +12,18 @@ interface Props {
 }
 
 export default function PaginationHome({ prev, next, pathname = '/' }: Props) {
+
   return (
     <Pagination>
       <PaginationContent>
-        <PaginationItem hidden={!Boolean(prev)}>
-          <PaginationPrevious href={{
-            pathname: pathname,
-            query: { page: prev },
-          }}/>
-        </PaginationItem>
-        <PaginationItem hidden={!Boolean(next)}>
-          <PaginationNext href={{
-            pathname: pathname,
-            query: { page: next },
-          }}/>
-        </PaginationItem>
+        <PaginationPrevious className={cn(Boolean(prev) ? 'flex' : 'hidden')} prefetch={false} href={{
+          pathname: pathname,
+          query: { page: prev },
+        }}/>
+        <PaginationNext className={cn(Boolean(next) ? 'flex' : 'hidden')} prefetch={false} href={{
+          pathname: pathname,
+          query: { page: next },
+        }}/>
       </PaginationContent>
     </Pagination>
   );

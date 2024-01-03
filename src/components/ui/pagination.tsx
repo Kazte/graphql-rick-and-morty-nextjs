@@ -5,8 +5,8 @@ import {
   DotsHorizontalIcon,
 } from "@radix-ui/react-icons"
 
-import { cn } from "~/lib/utils"
-import { ButtonProps, buttonVariants } from "~/components/ui/button"
+import { cn } from "@/lib/utils"
+import { ButtonProps, buttonVariants } from "@/components/ui/button"
 import Link from 'next/link';
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
@@ -51,6 +51,7 @@ const PaginationLink = ({
 }: PaginationLinkProps) => (
   <PaginationItem>
     <Link
+      prefetch={false}
       aria-current={isActive ? "page" : undefined}
       className={cn(
         buttonVariants({

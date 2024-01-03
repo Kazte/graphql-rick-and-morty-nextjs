@@ -7,11 +7,11 @@ interface Props extends PropsWithChildren {
 }
 
 export default function Loader({
-                                  children,
-                                  loaded,
-                                  message,
-                                  className = ''
-                                }: Props) {
+                                 children,
+                                 loaded,
+                                 message,
+                                 className = ''
+                               }: Props) {
   if (loaded) return <>{children}</>;
 
   return (

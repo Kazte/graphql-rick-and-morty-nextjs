@@ -1,6 +1,7 @@
-import client from '~/lib/graphql/client';
-import GetCharacterByIdQuery from '~/lib/graphql/queries/getCharacterByIdQuery';
-import GetAllCharactersQuery from '~/lib/graphql/queries/getAllCharactersQuery';
+import client from '@/lib/graphql/client';
+import GetAllCharactersQuery from '@/lib/graphql/queries/getAllCharactersQuery';
+import GetCharacterByIdQuery from '@/lib/graphql/queries/getCharacterByIdQuery';
+import { wait } from 'next/dist/lib/wait';
 
 interface IGetAllCharactersResponse {
   info: IQueryResult;
@@ -48,15 +49,14 @@ export interface Episode {
 }
 
 export async function getAllCharacters(page: number) {
+  await wait(1000)
   const characters = await client.fetch(GetAllCharactersQuery, { page: page });
   return characters as IGetAllCharactersResponse;
 }
 
 export async function getCharacter(id: string) {
-  console.log('id', id);
   try {
     const character = await client.fetch(GetCharacterByIdQuery, { id });
-    console.log(character);
     return character as IGetCharacterResponse;
   } catch (e: any) {
     console.log('error fetching', e.message);
