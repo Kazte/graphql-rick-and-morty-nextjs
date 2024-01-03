@@ -5,8 +5,8 @@ const cache = new CacheLoader({
 });
 
 const client = new GraphQLClient({
-  endpoint: 'https://rickandmortyapi.com/graphql', //process.env['NEXT_PUBLIC_BACKEND_SERVER'] as string,
-  cache
+  endpoint: process.env['NEXT_PUBLIC_BACKEND_SERVER'] as string,
+  // cache
 });
 
 export default client;
