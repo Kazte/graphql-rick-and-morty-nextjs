@@ -2,6 +2,7 @@ import client from '@/lib/graphql/client';
 import GetAllCharactersQuery from '@/lib/graphql/queries/getAllCharactersQuery';
 import GetCharacterByIdQuery from '@/lib/graphql/queries/getCharacterByIdQuery';
 import { wait } from 'next/dist/lib/wait';
+import GetAllCharactersByNameQuery from '@/lib/graphql/queries/getAllCharactersByNameQuery';
 
 interface IGetAllCharactersResponse {
   info: IQueryResult;
@@ -48,18 +49,21 @@ export interface Episode {
   episode: string;
 }
 
-export async function getAllCharacters(page: number) {
-  await wait(1000)
+export async function GetAllCharacters(page: number) {
   const characters = await client.fetch(GetAllCharactersQuery, { page: page });
   return characters as IGetAllCharactersResponse;
 }
 
-export async function getCharacter(id: string) {
+export async function GetAllCharactersByName(page: number, name: string) {
+  const characters = await client.fetch(GetAllCharactersByNameQuery, { page, name });
+  return characters as IGetAllCharactersResponse;
+}
+
+export async function GetCharacter(id: string) {
   try {
     const character = await client.fetch(GetCharacterByIdQuery, { id });
     return character as IGetCharacterResponse;
   } catch (e: any) {
     console.log('error fetching', e.message);
   }
-  // return character as IGetCharacterResponse
 }

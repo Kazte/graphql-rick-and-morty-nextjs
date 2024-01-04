@@ -1,10 +1,10 @@
-import { getCharacter } from '@/lib/services/character-service';
+import { GetCharacter } from '@/lib/services/character-service';
 import Image from 'next/image';
 import DescriptionItem from '@/components/DescriptionItem';
 
 export default async function CharacterPage({ params }: any) {
 
-  const character = await getCharacter(params.id);
+  const character = await GetCharacter(params.id);
 
   return (
     <div className='flex flex-row gap-2 w-full lg:w-3/4 mx-auto'>

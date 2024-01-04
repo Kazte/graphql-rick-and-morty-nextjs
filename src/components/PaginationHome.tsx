@@ -9,20 +9,21 @@ interface Props {
   prev?: number;
   next?: number;
   pathname?: string;
+  query?: any;
 }
 
-export default function PaginationHome({ prev, next, pathname = '/' }: Props) {
+export default function PaginationHome({ prev, next, pathname = '/', query }: Props) {
 
   return (
     <Pagination>
       <PaginationContent>
         <PaginationPrevious className={cn(Boolean(prev) ? 'flex' : 'hidden')} prefetch={false} href={{
           pathname: pathname,
-          query: { page: prev },
+          query: { ...query, page: prev },
         }}/>
         <PaginationNext className={cn(Boolean(next) ? 'flex' : 'hidden')} prefetch={false} href={{
           pathname: pathname,
-          query: { page: next },
+          query: { ...query, page: next },
         }}/>
       </PaginationContent>
     </Pagination>
