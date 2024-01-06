@@ -23,6 +23,7 @@ export default async function EpisodePage({ searchParams }: any) {
               {
                 episodes.map((episode) => (
                   <Link href={`/episode/${episode.id}`}
+                        key={episode.id}
                         className='max-w-[350px] min-w-[200px] bg-neutral-900 p-4 flex flex-col justify-center items-center gap-2 border-2 border-transparent transition-all ease-out duration-300 hover:border-accent-foreground'>
                     <h1 className='text-xl text-center line-clamp-2'>{episode.name}</h1>
                     <p className='italic text-foreground/50'>{episode.episode}</p>

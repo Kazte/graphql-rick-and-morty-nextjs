@@ -4,7 +4,7 @@ import GetEpisodeByIdQuery from '@/lib/graphql/queries/getEpisodeByIdQuery';
 import { IEpisode } from '@/lib/services/character-service';
 
 export async function GetAllEpisodes(page: number) {
-  return await client.fetch(GetAllEpisodesQuery, { page }) as IEpisode[];
+  return await client.fetch(GetAllEpisodesQuery, { page });
 }
 
 export async function GetEpisodeById(id: number) {
