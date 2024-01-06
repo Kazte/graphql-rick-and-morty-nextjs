@@ -27,26 +27,28 @@ export interface IGetCharacterResponse {
   species: string;
   type: string;
   gender: string;
-  origin: Origin;
-  location: Location;
+  origin: IOrigin;
+  location: ILocation;
   image: string;
-  episode: Episode[];
+  episode: IEpisode[];
 }
 
-export interface Origin {
+export interface IOrigin {
   id: any;
   name: string;
 }
 
-export interface Location {
+export interface ILocation {
   id: string;
   name: string;
 }
 
-export interface Episode {
+export interface IEpisode {
   id: string;
   name: string;
   episode: string;
+  air_date: string;
+  characters: ICharacter[];
 }
 
 export async function GetAllCharacters(page: number) {
@@ -59,7 +61,7 @@ export async function GetAllCharactersByName(page: number, name: string) {
   return characters as IGetAllCharactersResponse;
 }
 
-export async function GetCharacter(id: string) {
+export async function GetCharacterById(id: string) {
   try {
     const character = await client.fetch(GetCharacterByIdQuery, { id });
     return character as IGetCharacterResponse;

@@ -12,13 +12,13 @@ export default async function Home({ searchParams }: any) {
   const keyString = `search=${searchParams.page}`;
 
   return (
-    <section className='h-full flex flex-col gap-6 flex-grow'>
+    <section className='h-full flex flex-col gap-6 flex-grow p-12'>
 
       <h1 className='text-5xl text-center'>All Characters</h1>
       <Suspense key={keyString} fallback={<h1>Loading</h1>}>
         {
           characters && (
-            <ul className='flex flex-row flex-wrap justify-center gap-6'>
+            <ul className='grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-6'>
               {
                 characters.map((character) => (
                   <CharacterCard character={character} key={character.id}/>
