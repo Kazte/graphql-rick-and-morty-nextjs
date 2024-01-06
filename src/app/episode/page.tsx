@@ -4,6 +4,7 @@ import { GetAllEpisodes } from '@/lib/services/episode-service';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
+import { IEpisode } from '@/lib/services/character-service';
 
 export default async function EpisodePage({ searchParams }: any) {
   const getAllEpisodes = await GetAllEpisodes(parseInt(searchParams.page) || 1);
@@ -21,7 +22,7 @@ export default async function EpisodePage({ searchParams }: any) {
           episodes && (
             <ul className='grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-6'>
               {
-                episodes.map((episode) => (
+                episodes.map((episode: IEpisode) => (
                   <Link href={`/episode/${episode.id}`}
                         key={episode.id}
                         className='max-w-[350px] min-w-[200px] bg-neutral-900 p-4 flex flex-col justify-center items-center gap-2 border-2 border-transparent transition-all ease-out duration-300 hover:border-accent-foreground'>
